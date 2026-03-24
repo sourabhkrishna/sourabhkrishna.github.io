@@ -12,76 +12,17 @@
       min-height: 100vh;
       margin: 0;
       background-color: #1a1a2e;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #e0e0e0;
     }
 
-    .clock-container {
-      text-align: center;
-      background: #16213e;
+    iframe {
+      border: none;
       border-radius: 16px;
-      padding: 48px 64px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    h1 {
-      font-size: 1.2rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #a0aec0;
-      margin: 0 0 24px;
-    }
-
-    #date {
-      font-size: 1.6rem;
-      color: #90cdf4;
-      margin-bottom: 12px;
-    }
-
-    #time {
-      font-size: 4rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: #ffffff;
-      margin-bottom: 16px;
-    }
-
-    #timezone {
-      font-size: 1rem;
-      color: #68d391;
-      letter-spacing: 0.08em;
+      width: 480px;
+      height: 260px;
     }
   </style>
 </head>
 <body>
-  <div class="clock-container">
-    <h1>Current Date &amp; Time</h1>
-    <div id="date"></div>
-    <div id="time"></div>
-    <div id="timezone"></div>
-  </div>
-
-  <script>
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    function updateClock() {
-      const now = new Date();
-
-      document.getElementById('date').textContent = now.toLocaleDateString(undefined, dateOptions);
-      document.getElementById('time').textContent = now.toLocaleTimeString(undefined, timeOptions);
-
-      const offset = -now.getTimezoneOffset();
-      const sign = offset >= 0 ? '+' : '-';
-      const absOffset = Math.abs(offset);
-      const hours = String(Math.floor(absOffset / 60)).padStart(2, '0');
-      const minutes = String(absOffset % 60).padStart(2, '0');
-      document.getElementById('timezone').textContent = timezone + ' (UTC' + sign + hours + ':' + minutes + ')';
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-  </script>
+  <iframe src="widget.html" title="Current Date &amp; Time Widget"></iframe>
 </body>
 </html>
